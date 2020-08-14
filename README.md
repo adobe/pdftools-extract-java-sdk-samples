@@ -38,11 +38,10 @@ are provided in ```src/main/resources/log4j2.properties```. Alternate bindings, 
 ## Structured Information Output Format
 The output of SDK extract operation is Zip package. The Zip package consists of following:
 
-* structuredData.json: The file with the extracted content & PDF element structure. 
-  The detailed schema of the json file is available [here](#TODO).
-* Renditions: The zip package contains folder comprising renditions of each type of elements selected in input for renditions.
-  The folder name is tables or figures depending on element types. Each folder contains renditions with filenames as 
-  specified in corresponding element information in above JSON file. 
+* The structuredData.json file with the extracted content & PDF element structure. See the [JSON schema](https://opensource.adobe.com/pdftools-sdk-docs/shared/extractJSONOutputSchema.json). 
+* A renditions folder(s) containing renditions for each element type selected as input. 
+  The folder name is either “tables” or “figures” depending on your specified element type. 
+  Each folder contains renditions with filenames that correspond to the element information in the JSON file. 
 
 
 ## Running the samples
@@ -55,12 +54,12 @@ files used by the samples can be found in ```src/main/resources/```. When execut
 child folder under the working directory to store their results.
 
 ### Extract PDF Elements from PDF Document
-These samples illustrate how to extract PDF elements from PDF. Refer to the documentation of ExtractPDFOperation.java
+These samples illustrate how to extract PDF elements from PDF. Refer to the documentation of [ExtractPDFOperation.java](https://opensource.adobe.com/pdftools-extract-java-sdk-samples/apidocs/com/adobe/platform/operation/pdfops/ExtractPDFOperation.html)
 to see the list of inputs.
 
 #### Extract Text Elements
 
-The sample ExtractTextInfoFromPDF.java extracts text elements from PDF Document.
+The sample class ExtractTextInfoFromPDF.java extracts text elements from PDF Document.
 
 ```$xslt
 mvn -f pom.xml exec:java -Dexec.mainClass=com.adobe.platform.operation.samples.extractpdf.ExtractTextInfoFromPDF
@@ -69,7 +68,6 @@ mvn -f pom.xml exec:java -Dexec.mainClass=com.adobe.platform.operation.samples.e
 #### Extract Text, Table Elements
 
 The sample class ExtractTextTableInfoFromPDF extracts text, table elements from PDF Document. 
-containing the individual images.
 
 ```$xslt
 mvn -f pom.xml exec:java -Dexec.mainClass=com.adobe.platform.operation.samples.extractpdf.ExtractTextTableInfoFromPDF
