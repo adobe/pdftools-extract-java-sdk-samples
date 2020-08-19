@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.adobe.platform.operation"},{"l":"com.adobe.platform.operation.auth"},{"l":"com.adobe.platform.operation.exception"},{"l":"com.adobe.platform.operation.io"},{"l":"com.adobe.platform.operation.pdfops"},{"l":"com.adobe.platform.operation.pdfops.constants"}]
