@@ -38,7 +38,7 @@ are provided in ```src/main/resources/log4j2.properties```. Alternate bindings, 
 ## Structured Information Output Format
 The output of SDK extract operation is Zip package. The Zip package consists of following:
 
-* The structuredData.json file with the extracted content & PDF element structure. See the [JSON schema](https://opensource.adobe.com/pdftools-sdk-docs/shared/extractJSONOutputSchema.json). 
+* The structuredData.json file with the extracted content & PDF element structure. See the [JSON schema](https://opensource.adobe.com/pdftools-sdk-docs/release/shared/extractJSONOutputSchema.json). 
 * A renditions folder(s) containing renditions for each element type selected as input. 
   The folder name is either “tables” or “figures” depending on your specified element type. 
   Each folder contains renditions with filenames that correspond to the element information in the JSON file. 
