@@ -9,12 +9,6 @@
 
 package com.adobe.platform.operation.samples.extractpdf;
 
-import java.io.IOException;
-
-import com.adobe.platform.operation.pdfops.constants.PDFElementType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.adobe.platform.operation.ExecutionContext;
 import com.adobe.platform.operation.auth.Credentials;
 import com.adobe.platform.operation.exception.SdkException;
@@ -22,6 +16,11 @@ import com.adobe.platform.operation.exception.ServiceApiException;
 import com.adobe.platform.operation.exception.ServiceUsageException;
 import com.adobe.platform.operation.io.FileRef;
 import com.adobe.platform.operation.pdfops.ExtractPDFOperation;
+import com.adobe.platform.operation.pdfops.constants.PDFElementType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 /**
  * This sample illustrates how to extract Text Information from PDF.

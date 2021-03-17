@@ -1,15 +1,5 @@
-/*
- * Copyright 2020 Adobe
- * All Rights Reserved.
- *
- * NOTICE: Adobe permits you to use, modify, and distribute this file in
- * accordance with the terms of the Adobe license agreement accompanying
- * it.
- */
-
 package com.adobe.platform.operation.samples.extractpdf;
 
-import com.adobe.platform.operation.ClientConfig;
 import com.adobe.platform.operation.ExecutionContext;
 import com.adobe.platform.operation.auth.Credentials;
 import com.adobe.platform.operation.exception.SdkException;
@@ -18,20 +8,17 @@ import com.adobe.platform.operation.exception.ServiceUsageException;
 import com.adobe.platform.operation.io.FileRef;
 import com.adobe.platform.operation.pdfops.ExtractPDFOperation;
 import com.adobe.platform.operation.pdfops.constants.PDFElementType;
+import com.adobe.platform.operation.pdfops.constants.TableStructureType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Arrays;
 
-/**
- * This sample illustrates how to extract Text Information from PDF.
- * <p>
- * Refer to README.md for instructions on how to run the samples & understand output zip file.
- */
-public class ExtractTextInfoFromPDFWithCustomTimeouts {
+public class ExtractTextTableInfoWithTableStructureFromPdf {
 
     // Initialize the logger.
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExtractTextInfoFromPDFWithCustomTimeouts.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExtractTextTableInfoWithRenditionsFromPDF.class);
 
     public static void main(String[] args) {
 
@@ -42,23 +29,22 @@ public class ExtractTextInfoFromPDFWithCustomTimeouts {
                     .fromFile("pdftools-api-credentials.json")
                     .build();
 
-            // Create client config instance with custom time-outs.
-            ClientConfig clientConfig = ClientConfig.builder().withConnectTimeout(10000).withSocketTimeout(40000).build();
-
             //Create an ExecutionContext using credentials and create a new operation instance.
-            ExecutionContext executionContext = ExecutionContext.create(credentials, clientConfig);
+            ExecutionContext executionContext = ExecutionContext.create(credentials);
             ExtractPDFOperation extractPdfOperation = ExtractPDFOperation.createNew();
 
             // Set operation input from a source file.
             FileRef source = FileRef.createFromLocalFile("src/main/resources/extractPdfInput.pdf");
             extractPdfOperation.setInputFile(source);
-            extractPdfOperation.addElementToExtract(PDFElementType.TEXT);
+            extractPdfOperation.addElementsToExtract(Arrays.asList(PDFElementType.TEXT, PDFElementType.TABLES));
+            extractPdfOperation.addElementToExtractRenditions(PDFElementType.TABLES);
+            extractPdfOperation.addTableStructureFormat(TableStructureType.CSV);
 
             // Execute the operation.
             FileRef result = extractPdfOperation.execute(executionContext);
 
             // Save the result to the specified location.
-            result.saveAs("output/ExtractTextInfoFromPDFWithCustomTimeouts.zip");
+            result.saveAs("output/ExtractTextTableInfoWithTableStructureFromPdf.zip");
 
         } catch (ServiceApiException | IOException | SdkException | ServiceUsageException ex) {
             LOGGER.error("Exception encountered while executing operation", ex);
