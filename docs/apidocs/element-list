@@ -1,0 +1,6 @@
+com.adobe.platform.operation
+com.adobe.platform.operation.auth
+com.adobe.platform.operation.exception
+com.adobe.platform.operation.io
+com.adobe.platform.operation.pdfops
+com.adobe.platform.operation.pdfops.constants

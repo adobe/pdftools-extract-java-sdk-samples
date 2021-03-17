@@ -1,0 +1,52 @@
+package com.adobe.platform.operation.samples.extractpdf;
+
+import com.adobe.platform.operation.ExecutionContext;
+import com.adobe.platform.operation.auth.Credentials;
+import com.adobe.platform.operation.exception.SdkException;
+import com.adobe.platform.operation.exception.ServiceApiException;
+import com.adobe.platform.operation.exception.ServiceUsageException;
+import com.adobe.platform.operation.io.FileRef;
+import com.adobe.platform.operation.pdfops.ExtractPDFOperation;
+import com.adobe.platform.operation.pdfops.constants.PDFElementType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import com.adobe.platform.operation.ClientConfig;
+
+
+import java.io.IOException;
+
+public class ExtractTextInfoWithCharBoundsFromPDF {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExtractTextInfoFromPDF.class);
+
+    public static void main(String[] args) {
+
+        try {
+
+            // Initial setup, create credentials instance.
+            Credentials credentials = Credentials.serviceAccountCredentialsBuilder()
+                    .fromFile("pdftools-api-credentials.json")
+                    .build();
+
+            //Create an ExecutionContext using credentials and create a new operation instance.
+            ExecutionContext executionContext = ExecutionContext.create(credentials);
+            ExtractPDFOperation extractPdfOperation = ExtractPDFOperation.createNew();
+
+            // Set operation input from a source file.
+            FileRef source = FileRef.createFromLocalFile("src/main/resources/extractPdfInput.pdf");
+            extractPdfOperation.setInputFile(source);
+            extractPdfOperation.addElementToExtract(PDFElementType.TEXT);
+            extractPdfOperation.addCharInfo(Boolean.TRUE);
+
+
+            // Execute the operation.
+            FileRef result = extractPdfOperation.execute(executionContext);
+
+            // Save the result to the specified location.
+            result.saveAs("output/ExtractTextInfoWithCharBoundsFromPDF.zip");
+
+        } catch (ServiceApiException | IOException | SdkException | ServiceUsageException ex) {
+            LOGGER.error("Exception encountered while executing operation", ex);
+        }
+    }
+}

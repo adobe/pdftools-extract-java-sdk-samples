@@ -100,6 +100,33 @@ This enables the clients to fetch the credentials from a secret server during ru
 ```$xslt
 mvn -f pom.xml exec:java -Dexec.mainClass=com.adobe.platform.operation.samples.extractpdf.ExtractTextInfoFromPDFWithInMemoryAuthCredentials
 ```
+#### Extract Text Elements and bounding boxes for Characters present in text blocks
+
+The sample class ExtractTextInfoWithCharBoundsFromPDF extracts text elements and bounding boxes for characters present in text blocks. Note that the output is a zip containing the structured information 
+along with renditions as described in [section](#structured-information-output-format).
+
+```$xslt
+mvn -f pom.xml exec:java -Dexec.mainClass=com.adobe.platform.operation.samples.extractpdf.ExtractTextInfoWithCharBoundsFromPDF
+```
+
+#### Extract Text, Table Elements and bounding boxes for Characters present in text blocks with Renditions of Table Elements
+
+The sample class ExtractTextTableInfoWithCharBoundsFromPDF extracts text, table elements, bounding boxes for characters present in text blocks and 
+table element's renditions from PDF Document. Note that the output is a zip containing the structured information 
+along with renditions as described in [section](#structured-information-output-format).
+
+```$xslt
+mvn -f pom.xml exec:java -Dexec.mainClass=com.adobe.platform.operation.samples.extractpdf.ExtractTextTableInfoWithCharBoundsFromPDF
+```
+#### Extract Text, Table Elements with Renditions and CSV's of Table Elements 
+
+The sample class ExtractTextTableInfoWithTableStructureFromPdf extracts text, table elements, table structures as CSV and 
+table element's renditions from PDF Document. Note that the output is a zip containing the structured information 
+along with renditions as described in [section](#structured-information-output-format).
+
+```$xslt
+mvn -f pom.xml exec:java -Dexec.mainClass=com.adobe.platform.operation.samples.extractpdf.ExtractTextTableInfoWithTableStructureFromPdf
+```
 
 ### Contributing
 
